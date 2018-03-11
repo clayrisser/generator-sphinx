@@ -40,28 +40,28 @@ npm install -g yo generator-sphinx
 make
 ```
 
-### Build html
+#### Build html
 
 ```sh
 make html
 ```
 
 
-### Build man page
+#### Build man page
 
 ```sh
 make man
 ```
 
 
-### Build man latex
+#### Build latex
 
 ```sh
 make latex
 ```
 
 
-### Build man pdf
+#### Build pdf
 
 ```sh
 make latexpdf
