@@ -32,14 +32,14 @@ module.exports = class extends Generator {
     ]);
     let newFolder = false;
     if (!this.options.destination && !isEmpty()) {
-      newFolder = await this.optionOrPrompt([
+      newFolder = (await this.optionOrPrompt([
         {
           type: 'confirm',
           name: 'newFolder',
           message: 'New Folder:',
           default: false
         }
-      ]).newFolder;
+      ])).newFolder;
     }
     const { description, version, license } = await this.optionOrPrompt([
       {

@@ -20,7 +20,7 @@ export function guessUsername(email) {
 
 export function guessName() {
   const matches = process.cwd().match(/[^\/]+$/g);
-  if (isEmpty() && matches.length > 0) return matches[0];
+  if (matches.length > 0) return matches[0];
   return 'some-name';
 }
 
