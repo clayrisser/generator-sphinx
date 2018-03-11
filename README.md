@@ -34,7 +34,38 @@ npm install -g yo generator-sphinx
 
 ## Usage
 
-[Contribute](https://github.com/jamrizzi/generator-sphinx/blob/master/CONTRIBUTING.md) usage docs
+### Serve locally
+
+```sh
+make
+```
+
+### Build html
+
+```sh
+make html
+```
+
+
+### Build man page
+
+```sh
+make man
+```
+
+
+### Build man latex
+
+```sh
+make latex
+```
+
+
+### Build man pdf
+
+```sh
+make latexpdf
+```
 
 
 ## Support

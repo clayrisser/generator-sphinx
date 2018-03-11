@@ -39,6 +39,11 @@ export async function copy(yo) {
     yo.destinationPath('docs/conf.py'),
     yo.context
   );
+  yo.fs.copyTpl(
+    yo.templatePath('template/shared/LICENSE'),
+    yo.destinationPath('LICENSE'),
+    yo.context
+  );
   yo.fs.copy(
     yo.templatePath('template/shared/Makefile'),
     yo.destinationPath('Makefile')
