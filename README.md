@@ -34,7 +34,7 @@ npm install -g yo generator-sphinx
 
 ## Usage
 
-### Serve locally
+#### Serve locally
 
 ```sh
 make
