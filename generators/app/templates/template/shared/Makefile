@@ -1,24 +1,19 @@
 BUILDDIR=build
 SOURCEDIR=docs
-SPHINXBUILD=sphinx-build
 SPHINXOPTS=
 SPHINXPROJ=test
 
-.PHONY: start
-start: serve
-	@echo
+.PHONY: build
+build: env clean html man latexpdf
+	@echo ::: BUILD :::
 
 .PHONY: serve
 serve: build
-	@cd build/html && python3 -m http.server
+	@cd build/html && ../../env/bin/python3 -m http.server
 
 .PHONY: help
 help:
 	@$(SPHINXBUILD) -M help "$(SOURCEDIR)" "$(BUILDDIR)" $(SPHINXOPTS) $(O)
-
-.PHONY: build
-build: env clean html
-	@echo ::: BUILD :::
 
 env:
 	@virtualenv env
@@ -34,4 +29,4 @@ freeze:
 
 .PHONY: Makefile
 %: Makefile
-	@$(SPHINXBUILD) -M $@ "$(SOURCEDIR)" "$(BUILDDIR)" $(SPHINXOPTS) $(O)
+	@env/bin/sphinx-build -M $@ "$(SOURCEDIR)" "$(BUILDDIR)" $(SPHINXOPTS) $(O)

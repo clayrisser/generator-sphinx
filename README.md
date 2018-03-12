@@ -11,6 +11,10 @@ Please &#9733; this repo if you found it useful &#9733; &#9733; &#9733;
 
 ## Features
 
+* Build html docs
+* Build man pages
+* Build latex project
+* Build pdf docs
 * Choose from multiple themes
 * Choose custom latex type
 * Supports multiple sphinx domains
@@ -31,6 +35,7 @@ npm install -g yo generator-sphinx
 * [GNU Make](https://www.gnu.org/software/make)
 * [Python 3](https://www.python.org)
 * [Virtualenv](https://virtualenv.pypa.io)
+* [Latexmk](http://mg.readthedocs.io/latexmk.html)
 
 
 ## Usage
@@ -38,7 +43,18 @@ npm install -g yo generator-sphinx
 #### Serve locally
 
 ```sh
-make
+make serve
+```
+
+#### Build
+```sh
+make build
+```
+
+#### Build help
+
+```sh
+make help
 ```
 
 #### Build html

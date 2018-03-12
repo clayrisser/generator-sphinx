@@ -1,7 +1,7 @@
 import _ from 'lodash';
-import yeomanOptionOrPrompt from 'yeoman-option-or-prompt';
+import yoOptionOrPrompt from 'yo-option-or-prompt';
 
-export default async function initialize(yo) {
+export default async function initializing(yo) {
   yo.context = { _ };
-  yo.optionOrPrompt = yeomanOptionOrPrompt;
+  yo.optionOrPrompt = yoOptionOrPrompt;
 }
