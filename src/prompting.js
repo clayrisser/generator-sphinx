@@ -2,11 +2,14 @@ import path from 'path';
 import {
   guessAuthorEmail,
   guessAuthorName,
-  guessUsername,
+  guessAuthorUrl,
   guessProjectDescription,
   guessProjectDestination,
+  guessProjectLicense,
+  guessProjectName,
+  guessProjectRepository,
   guessProjectVersion,
-  guessProjectName
+  guessUsername
 } from 'project-guess';
 
 export default async function prompting(yo) {
@@ -32,7 +35,7 @@ export default async function prompting(yo) {
       type: 'input',
       name: 'description',
       message: 'Project Description:',
-      default: guessProjectDescription()
+      default: guessProjectDescription(`A project for ${name}`)
     },
     {
       type: 'input',
@@ -44,7 +47,7 @@ export default async function prompting(yo) {
       type: 'input',
       name: 'license',
       message: 'License:',
-      default: 'MIT'
+      default: guessProjectLicense()
     }
   ]);
   const { authorName, authorEmail } = await yo.optionOrPrompt([
@@ -74,7 +77,7 @@ export default async function prompting(yo) {
       type: 'input',
       name: 'authorUrl',
       message: 'Author URL:',
-      default: `https://${githubUsername}.com`
+      default: guessAuthorUrl(githubUsername)
     }
   ]);
   const { repository } = await yo.optionOrPrompt([
@@ -82,7 +85,7 @@ export default async function prompting(yo) {
       type: 'input',
       name: 'repository',
       message: 'Repository:',
-      default: `https://github.com/${githubUsername}/${name}`
+      default: guessProjectRepository(githubUsername, name)
     }
   ]);
   const {
