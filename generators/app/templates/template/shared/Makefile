@@ -1,14 +1,14 @@
-BUILDDIR=build
 SOURCEDIR=docs
+BUILDDIR=$(SOURCEDIR)/build
 SPHINXOPTS=
-SPHINXPROJ=test
+SPHINXPROJ=<%= name %>
 
 .PHONY: build
 build: env clean html man latexpdf
 	@echo ::: BUILD :::
 
 .PHONY: serve
-serve: build
+serve: env clean html
 	@cd build/html && ../../env/bin/python3 -m http.server
 
 .PHONY: help

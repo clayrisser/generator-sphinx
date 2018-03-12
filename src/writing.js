@@ -12,9 +12,10 @@ export default async function writing(yo) {
     yo.destinationPath('docs/conf.py'),
     yo.context
   );
-  yo.fs.copy(
+  yo.fs.copyTpl(
     yo.templatePath('template/shared/Makefile'),
-    yo.destinationPath('Makefile')
+    yo.destinationPath('Makefile'),
+    yo.context
   );
   yo.fs.copy(
     yo.templatePath('template/shared/_editorconfig'),
