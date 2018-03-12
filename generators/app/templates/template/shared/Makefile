@@ -1,3 +1,4 @@
+CWD = $(shell pwd)
 SOURCEDIR=docs
 BUILDDIR=$(SOURCEDIR)/build
 SPHINXOPTS=
@@ -9,7 +10,7 @@ build: env clean html man latexpdf
 
 .PHONY: serve
 serve: env clean html
-	@cd $(BUILDDIR)/html && ../../env/bin/python3 -m http.server
+	@cd $(BUILDDIR)/html && $(CWD)/env/bin/python3 -m http.server
 
 .PHONY: help
 help:
