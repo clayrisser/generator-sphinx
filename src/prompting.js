@@ -154,9 +154,20 @@ export default async function prompting(yo) {
     theme,
     version
   };
-  yo.composeWith(require.resolve('generator-github-project'), {
-    ...yo.answers,
-    template: 'minimal'
-  });
+  if (
+    await yo.optionOrPrompt([
+      {
+        type: 'confirm',
+        name: 'generatorGithubProject',
+        message: 'Generator GitHub Project:',
+        default: true
+      }
+    ])
+  ) {
+    yo.composeWith(require.resolve('generator-github-project'), {
+      ...yo.answers,
+      template: 'minimal'
+    });
+  }
   yo.context = { ...yo.context, ...yo.answers };
 }
