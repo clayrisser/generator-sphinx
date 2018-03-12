@@ -88,14 +88,7 @@ export default async function prompting(yo) {
       default: guessProjectRepository(githubUsername, name)
     }
   ]);
-  const {
-    homepage,
-    install,
-    latexType,
-    sourcePath,
-    template,
-    theme
-  } = await yo.optionOrPrompt([
+  const { homepage, latexType, template, theme } = await yo.optionOrPrompt([
     {
       type: 'input',
       name: 'homepage',
@@ -122,13 +115,21 @@ export default async function prompting(yo) {
       message: 'Template',
       choices: ['js'],
       default: 'js'
-    },
+    }
+  ]);
+  let { sourcePath } = await yo.optionOrPrompt([
     {
       type: 'input',
       name: 'sourcePath',
       message: 'Source Path:',
       default: './src'
-    },
+    }
+  ]);
+  sourcePath = path.relative(
+    path.resolve(destination, 'docs'),
+    path.resolve(destination, sourcePath)
+  );
+  const { install } = await yo.optionOrPrompt([
     {
       type: 'confirm',
       name: 'install',

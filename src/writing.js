@@ -12,6 +12,10 @@ export default async function writing(yo) {
     yo.destinationPath('docs/conf.py'),
     yo.context
   );
+  yo.fs.copy(
+    yo.templatePath(`template/${yo.context.template}/_readthedocs.yml`),
+    yo.destinationPath('.readthedocs.yml')
+  );
   yo.fs.copyTpl(
     yo.templatePath('template/shared/Makefile'),
     yo.destinationPath('Makefile'),

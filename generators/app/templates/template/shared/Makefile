@@ -1,6 +1,6 @@
 CWD = $(shell pwd)
 SOURCEDIR=docs
-BUILDDIR=$(SOURCEDIR)/build
+BUILDDIR=build
 SPHINXOPTS=
 SPHINXPROJ=<%= name %>
 
@@ -10,11 +10,11 @@ build: env clean html man latexpdf
 
 .PHONY: serve
 serve: env clean html
-	@cd $(BUILDDIR)/html && $(CWD)/env/bin/python3 -m http.server
+	@cd $(SOURCEDIR)/$(BUILDDIR)/html && $(CWD)/env/bin/python3 -m http.server
 
 .PHONY: help
 help:
-	@$(SPHINXBUILD) -M help "$(SOURCEDIR)" "$(BUILDDIR)" $(SPHINXOPTS) $(O)
+	@$(SPHINXBUILD) -M help $(SOURCEDIR) $(BUILDDIR) $(SPHINXOPTS) $(O)
 
 env:
 	@virtualenv env
@@ -30,4 +30,5 @@ freeze:
 
 .PHONY: Makefile
 %: Makefile
-	@env/bin/sphinx-build -M $@ "$(SOURCEDIR)" "$(BUILDDIR)" $(SPHINXOPTS) $(O)
+	@cd $(SOURCEDIR) && $(CWD)/env/bin/sphinx-build -M $@ ./ $(BUILDDIR) $(SPHINXOPTS) $(O)
+	@echo ::: $@ ::: | tr '[:lower:]' '[:upper:]'
