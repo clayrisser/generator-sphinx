@@ -9,7 +9,7 @@ build: env clean html man latexpdf
 
 .PHONY: serve
 serve: env clean html
-	@cd build/html && ../../env/bin/python3 -m http.server
+	@cd $(BUILDDIR)/html && ../../env/bin/python3 -m http.server
 
 .PHONY: help
 help:
