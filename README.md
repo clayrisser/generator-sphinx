@@ -28,8 +28,9 @@ npm install -g yo generator-sphinx
 ## Dependencies
 
 * [NodeJS](https://nodejs.org)
-* [Python 3](https://www.python.org)
 * [GNU Make](https://www.gnu.org/software/make)
+* [Python 3](https://www.python.org)
+* [Virtualenv](https://virtualenv.pypa.io)
 
 
 ## Usage

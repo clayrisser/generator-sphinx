@@ -20,7 +20,7 @@ html_theme = '<%= theme %>'
 
 htmlhelp_basename = '<%= _.snakeCase(name) %>doc'
 
-js_source_path = './'
+js_source_path = '<%= sourcePath %>'
 
 language = None
 
@@ -29,7 +29,7 @@ master_doc = 'index'
 latex_documents = [(
     master_doc,
     '<%= _.snakeCase(name) %>.tex',
-    '<%= name %> Documentation',
+    '<%= _.startCase(_.camelCase(name)) %> Documentation',
     '<%= authorName %>',
     '<%= latexType %>'
 )]
@@ -44,7 +44,7 @@ latex_elements = {
 man_pages = [(
     master_doc,
     '<%= _.snakeCase(name) %>',
-    '<%= name %> Documentation',
+    '<%= _.startCase(_.camelCase(name)) %> Documentation',
     [author],
     1
 )]
@@ -70,7 +70,7 @@ templates_path = ['_templates']
 texinfo_documents = [(
     master_doc,
     '<%= name %>',
-    '<%= name %> Documentation',
+    '<%= _.startCase(_.camelCase(name)) %> Documentation',
     author,
     '<%= _.snakeCase(name) %>',
     '<%= description %>',
