@@ -37,7 +37,9 @@ export default async function writing(yo) {
     yo.templatePath('template/shared/requirements.txt'),
     yo.destinationPath('requirements.txt')
   );
-  if (!yo.context.sourceFilesExist) {
+  if (yo.context.sourceFilesExist && fs.existsSync(path.resolve('README.md'))) {
+    yo.fs.copy(path.resolve('README.md'), path.resolve('docs/index.md'));
+  } else {
     yo.fs.copy(
       yo.templatePath(`template/${yo.context.template}/src`),
       yo.destinationPath('src')
