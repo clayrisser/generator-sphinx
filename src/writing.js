@@ -4,7 +4,9 @@ import path from 'path';
 export default async function writing(yo) {
   await fs.mkdirs(path.resolve('docs/_templates'));
   yo.fs.copy(
-    yo.templatePath('template/shared/docs/_static'),
+    yo.templatePath(
+      `themes/${yo.context.theme}/${yo.context.themeStyle}/_static`
+    ),
     yo.destinationPath('docs/_static')
   );
   yo.fs.copyTpl(

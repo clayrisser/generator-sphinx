@@ -1,100 +1,33 @@
+import YoBasePrompts from 'yo-base-prompts';
 import path from 'path';
-import {
-  guessAuthorEmail,
-  guessAuthorName,
-  guessAuthorUrl,
-  guessProjectDescription,
-  guessProjectDestination,
-  guessProjectLicense,
-  guessProjectName,
-  guessProjectRepository,
-  guessProjectVersion,
-  guessUsername
-} from 'project-guess';
 
 export default async function prompting(yo) {
-  const { name } = await yo.optionOrPrompt([
-    {
-      type: 'input',
-      name: 'name',
-      message: 'Project Name:',
-      default: guessProjectName()
-    }
-  ]);
-  let { destination } = await yo.optionOrPrompt([
-    {
-      type: 'input',
-      name: 'destination',
-      message: 'Destination:',
-      default: guessProjectDestination(name)
-    }
-  ]);
-  destination = path.resolve(destination);
-  const { description, version, license } = await yo.optionOrPrompt([
-    {
-      type: 'input',
-      name: 'description',
-      message: 'Project Description:',
-      default: guessProjectDescription(`A project for ${name}`)
-    },
-    {
-      type: 'input',
-      name: 'version',
-      message: 'Version:',
-      default: guessProjectVersion()
-    },
-    {
-      type: 'input',
-      name: 'license',
-      message: 'License:',
-      default: guessProjectLicense()
-    }
-  ]);
-  const { authorName, authorEmail } = await yo.optionOrPrompt([
-    {
-      type: 'input',
-      name: 'authorName',
-      message: 'Author Name:',
-      default: guessAuthorName()
-    },
-    {
-      type: 'input',
-      name: 'authorEmail',
-      message: 'Author Email:',
-      default: guessAuthorEmail()
-    }
-  ]);
-  const { githubUsername } = await yo.optionOrPrompt([
-    {
-      type: 'input',
-      name: 'githubUsername',
-      message: 'GitHub Username:',
-      default: guessUsername(authorEmail)
-    }
-  ]);
-  const { authorUrl } = await yo.optionOrPrompt([
-    {
-      type: 'input',
-      name: 'authorUrl',
-      message: 'Author URL:',
-      default: guessAuthorUrl(githubUsername)
-    }
-  ]);
-  const { repository } = await yo.optionOrPrompt([
-    {
-      type: 'input',
-      name: 'repository',
-      message: 'Repository:',
-      default: guessProjectRepository(githubUsername, name)
-    }
-  ]);
-  const { homepage, latexType, template, theme } = await yo.optionOrPrompt([
-    {
-      type: 'input',
-      name: 'homepage',
-      message: 'Homepage:',
-      default: repository
-    },
+  const {
+    name,
+    destination,
+    description,
+    version,
+    license,
+    authorName,
+    authorEmail,
+    githubUsername,
+    authorUrl,
+    homepage,
+    repository
+  } = await new YoBasePrompts(yo).prompt({
+    name: true,
+    destination: true,
+    description: true,
+    version: true,
+    license: true,
+    authorName: true,
+    authorEmail: true,
+    githubUsername: true,
+    authorUrl: true,
+    homepage: true,
+    repository: true
+  });
+  const { latexType, template, theme } = await yo.optionOrPrompt([
     {
       type: 'list',
       name: 'theme',
@@ -115,6 +48,16 @@ export default async function prompting(yo) {
       message: 'Template',
       choices: ['js'],
       default: 'js'
+    }
+  ]);
+  const { themeStyle } = await yo.optionOrPrompt([
+    {
+      type: 'list',
+      name: 'themeStyle',
+      message: 'Theme Style:',
+      when: theme === 'sphinx_rtd_theme',
+      choices: ['orange'],
+      default: 'orange'
     }
   ]);
   let { sourcePath } = await yo.optionOrPrompt([
@@ -153,6 +96,7 @@ export default async function prompting(yo) {
     sourcePath,
     template,
     theme,
+    themeStyle,
     version
   };
   if (
