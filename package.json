@@ -1,6 +1,6 @@
 {
   "name": "generator-sphinx",
-  "version": "0.1.17",
+  "version": "0.1.18",
   "description": "",
   "keywords": [
     "yeoman-generator",
@@ -23,11 +23,11 @@
     "unlink": "npm unlink generator-sphinx"
   },
   "dependencies": {
-    "babel-polyfill": "^6.26.0",
     "easycp": "0.0.2",
     "fs-extra": "^5.0.0",
     "generator-github-project": "^0.2.6",
     "glob": "^7.1.2",
+    "idempotent-babel-polyfill": "^0.1.1",
     "lodash": "^4.17.4",
     "yeoman-generator": "^1.0.0",
     "yo-base-prompts": "0.1.5",
