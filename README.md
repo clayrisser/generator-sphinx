@@ -40,6 +40,10 @@ npm install -g yo generator-sphinx
 
 ## Usage
 
+```sh
+yo sphinx
+```
+
 #### Serve locally
 
 ```sh
